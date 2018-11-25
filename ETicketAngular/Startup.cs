@@ -22,9 +22,18 @@ namespace ETicketAngular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var connection = @"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Sebastian\\Documents\\Visual Studio 2017\\Projects\\ETicketDB.mdf;Integrated Security=True;Connect Timeout=30";
+            var connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Sebastian\Documents\Visual Studio 2017\Projects\ETicketDB.mdf;Integrated Security=True;Connect Timeout=30";
             services.AddDbContext<ETicketDBContext>(options => options.UseSqlServer(connection));
 
             // In production, the Angular files will be served from this directory
@@ -47,6 +56,7 @@ namespace ETicketAngular
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

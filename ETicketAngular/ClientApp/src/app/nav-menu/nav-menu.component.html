@@ -28,6 +28,11 @@
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/event-search"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Event Searcher
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/contact"]' (click)='collapse()'>
                 <span class='glyphicon glyphicon-th-list'></span> Contact
               </a>

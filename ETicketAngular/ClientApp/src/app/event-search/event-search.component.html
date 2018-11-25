@@ -1,0 +1,36 @@
+<h1>Events searcher</h1>
+
+<p>Search for the events.</p>
+
+<p *ngIf="!events"><em>Loading...</em></p>
+
+<table class='table' *ngIf="events">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Limit</th>
+      <th>Place</th>
+      <th>Tour</th>
+      <th>HotelReservation</th>
+      <th>TransportReservation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.eventId }}</td>
+      <td>{{ event.eventName }}</td>
+      <td>{{ event.eventDescription }}</td>
+      <td>{{ event.eventStart }}</td>
+      <td>{{ event.eventEnd }}</td>
+      <td>{{ event.eventTicketPurchaseLimit }}</td>
+      <td>{{ event.placeId }}</td>
+      <td>{{ event.tourId }}</td>
+      <td>{{ event.hotelReservationId }}</td>
+      <td>{{ event.transportReservationId }}</td>
+    </tr>
+  </tbody>
+</table>

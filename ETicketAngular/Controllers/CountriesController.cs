@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ETicketAngular.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace ETicketAngular.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CountriesController : ControllerBase
+    public class CountriesController : Controller
     {
         private readonly ETicketDBContext _context;
 
@@ -26,6 +28,18 @@ namespace ETicketAngular.Controllers
         {
             return _context.Countries;
         }
+
+        /*[HttpGet]
+
+        [Route("api/Countries/GetCountries")]
+
+        public IEnumerable<Countries> GetCountries()
+
+        {
+
+            return _context.Countries.ToList();
+
+        }*/
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
@@ -90,7 +104,7 @@ namespace ETicketAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Countries.Add(countries);
+            //_context.Countries.Add(countries);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCountries", new { id = countries.CountryId }, countries);

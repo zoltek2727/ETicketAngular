@@ -7,6 +7,7 @@ import { EventService } from '../services/events.service';
 @Component({
   selector: 'app-event-search',
   templateUrl: './event-search.component.html',
+  styleUrls: ['./event-search.component.css']
 })
 export class EventSearchComponent implements OnInit {
   public events: Event[];

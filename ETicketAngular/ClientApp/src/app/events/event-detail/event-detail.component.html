@@ -1,0 +1,16 @@
+<p *ngIf="!event">
+  <mat-progress-spinner style="margin:0 auto;" color="warn" mode="indeterminate"></mat-progress-spinner>
+</p>
+
+<div *ngIf="event">
+  <h1>Event detail</h1>
+
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-chip-list class="mat-chip-list-stacked">
+    <mat-chip [color]="primary">{{event.eventName}}</mat-chip>
+    <mat-chip [color]="accent">{{event.eventStart}}-{{event.eventEnd}}</mat-chip>
+  </mat-chip-list>
+
+  {{ event.eventDescription }}
+
+</div>

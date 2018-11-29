@@ -1,0 +1,37 @@
+<div class="container">
+  <p *ngIf="!events">
+    <mat-progress-spinner style="margin:0 auto;" color="warn" mode="indeterminate"></mat-progress-spinner>
+  </p>
+
+  <div *ngIf="events">
+    <h1>Events searcher</h1>
+
+    <p>Search for the events.</p>
+
+    <mat-form-field class="search-form">
+      <input matInput placeholder="Search Picture" type="text" [(ngModel)]="queryString">
+    </mat-form-field>
+
+    <section fxLayout="row wrap" fxLayoutGap="20px" fxLayoutGap.gt-md="20px" fxLayoutGap.gt-sm="20px" fxLayoutGap.gt-xs="20px">
+      <mat-card *ngFor="let event of splicedData | filterdata: queryString : 'eventName'" fxFlex.gt-md="0 1 calc(100% / 4 - 20px)" fxFlex.gt-sm="0 1 calc(100% / 3 - 20px)" fxFlex.gt-xs="0 1 calc(100% / 2 - 20px)" fxFlex="0 1 100%">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ event.eventName }}</mat-card-title>
+          <mat-card-subtitle>{{ event.eventStart }} - {{ event.eventEnd }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{ event.eventDescription }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button id="details" (click)="getEventDetails(event.eventId)">OPEN</button>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+
+    <mat-paginator (page)="pageChangeEvent($event)" [length]="pageLength" [pageSize]="pageSize">
+    </mat-paginator>
+  </div>
+</div>

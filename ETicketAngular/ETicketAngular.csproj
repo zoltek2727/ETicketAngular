@@ -28,15 +28,23 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\Nowy folder\**" />
     <Compile Remove="ClientApp\src\app\product-search\**" />
+    <Compile Remove="ClientApp\src\app\services\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\Nowy folder\**" />
     <Content Remove="ClientApp\src\app\product-search\**" />
+    <Content Remove="ClientApp\src\app\services\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\Nowy folder\**" />
     <EmbeddedResource Remove="ClientApp\src\app\product-search\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\services\**" />
+    <None Remove="ClientApp\src\app\Nowy folder\**" />
     <None Remove="ClientApp\src\app\product-search\**" />
+    <None Remove="ClientApp\src\app\services\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +57,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\filterdata.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\country.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\event.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\events.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\window.ts" />
   </ItemGroup>
 

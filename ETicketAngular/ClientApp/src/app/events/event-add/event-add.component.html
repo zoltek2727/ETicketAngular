@@ -1,0 +1,38 @@
+<mat-form-field>
+  <input matInput placeholder="Event name" [(ngModel)]="model.EventName">
+</mat-form-field>
+<br/>
+<mat-form-field>
+  <textarea matInput placeholder="Event Description" [(ngModel)]="model.EventDescription"></textarea>
+</mat-form-field>
+<br />
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Choose an event start date" [(ngModel)]="model.EventStart">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br />
+<mat-form-field>
+  <input matInput [matDatepicker]="picker2" placeholder="Choose an event end date" [(ngModel)]="model.EventEnd">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+<br />
+<mat-form-field>
+  <mat-select placeholder="Select ticket limit" [(ngModel)]="model.EventTicketPurchaseLimit">
+    <mat-option value="1">1</mat-option>
+    <mat-option value="2">2</mat-option>
+    <mat-option value="3">3</mat-option>
+    <mat-option value="4">4</mat-option>
+    <mat-option value="5">5</mat-option>
+    <mat-option value="6">6</mat-option>
+    </mat-select>
+</mat-form-field>
+<br />
+<mat-form-field>
+  <mat-select placeholder="Select place" [(ngModel)]="model.PlaceId">
+    <mat-option *ngFor="let place of model.Place" [value]="place.PlaceId">{{place.PlaceName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<br />
+<button mat-button id="details" (click)="AddEvent(model); model=''">ADD</button>

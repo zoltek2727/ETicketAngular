@@ -8,8 +8,46 @@
 
     <p>Search for the events.</p>
 
+    <button mat-button [matMenuTriggerFor]="performerCategoryMenu"><i class="material-icons">arrow_drop_down_circle</i> Categories </button>
+    <mat-menu #performerCategoryMenu="matMenu">
+      <ng-container *ngFor="let performerCategory of performerCategories | slice:0:10">
+        <button mat-menu-item [matMenuTriggerFor]="performerMenu"><i class="material-icons" style="color:red;">category</i> {{ performerCategory.performerCategoryName }}</button>
+        <mat-menu #performerMenu="matMenu">
+          <ng-container *ngFor="let performer of performerCategory.performers | slice:0:10">
+            <button mat-menu-item [matMenuTriggerFor]="tourMenu"><i class="material-icons" style="color:purple;">group</i> {{ performer.performerName }}</button>
+            <mat-menu #tourMenu="matMenu">
+              <button *ngFor="let tour of performer.tours | slice:0:10" mat-menu-item><i class="material-icons" style="color:blue;">event</i> {{ tour.tourName }}</button>
+            </mat-menu>
+          </ng-container>
+        </mat-menu>
+      </ng-container>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="countryMenu"><i class="material-icons">arrow_drop_down_circle</i> Countries</button>
+    <mat-menu #countryMenu="matMenu">
+      <ng-container *ngFor="let country of countries | slice:0:10">
+        <button mat-menu-item [matMenuTriggerFor]="cityMenu"><i class="material-icons" style="color:red;">outlined_flag</i> {{ country.countryName }}</button>
+        <mat-menu #cityMenu="matMenu">
+          <ng-container *ngFor="let city of country.cities | slice:0:10">
+            <button mat-menu-item [matMenuTriggerFor]="placeMenu"><i class="material-icons" style="color:purple;">location_city</i> {{ city.cityName }}</button>
+            <mat-menu #placeMenu="matMenu">
+              <button *ngFor="let place of city.places | slice:0:10" mat-menu-item><i class="material-icons" style="color:blue;">home</i> {{ place.placeName }}</button>
+            </mat-menu>
+          </ng-container>
+        </mat-menu>
+      </ng-container>
+    </mat-menu>
+
+    <br />
+
     <mat-form-field class="search-form">
-      <input matInput placeholder="Search Picture" type="text" [(ngModel)]="queryString">
+      <input matInput placeholder="Search Event" type="text" [(ngModel)]="queryString" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let event of splicedData | filterdata: queryString : 'eventName', async" [value]="event.eventName">
+          <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="rounded mb-3" width="25">
+          {{event.eventName}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <section fxLayout="row wrap" fxLayoutGap="20px" fxLayoutGap.gt-md="20px" fxLayoutGap.gt-sm="20px" fxLayoutGap.gt-xs="20px">
@@ -27,6 +65,8 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button id="details" (click)="getEventDetails(event.eventId)">OPEN</button>
+          <button mat-button id="edit" (click)="editEvent(event.eventId)">EDIT</button>
+          <button mat-button id="delete" (click)="deleteThisEvent(event.eventId)">DELETE</button>
         </mat-card-actions>
       </mat-card>
     </section>

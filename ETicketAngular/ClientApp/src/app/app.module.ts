@@ -51,8 +51,13 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ContactComponent } from './contact/contact.component';
 import { EventSearchComponent } from './events/event-search/event-search.component';
-import { EventService } from './events/services/events.service';
+import { EventService } from './services/events.service';
+import { CountriesService } from './services/countries.service';
+import { PerformerCategoriesService } from './services/performercategories.service';
+import { CountryAddComponent } from './countries/country-add/country-add.component';
+import { CountryListComponent } from './countries/country-list/country-list.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { EventAddComponent } from './events/event-add/event-add.component';
 
 import { windowProvider } from './window';
 import { FilterdataPipe } from './filterdata.pipe';
@@ -67,6 +72,9 @@ import { FilterdataPipe } from './filterdata.pipe';
     ContactComponent,
     EventSearchComponent,
     EventDetailComponent,
+    EventAddComponent,
+    CountryAddComponent,
+    CountryListComponent,
     FilterdataPipe
   ],
   imports: [
@@ -119,10 +127,15 @@ import { FilterdataPipe } from './filterdata.pipe';
       { path: 'contact', component: ContactComponent },
       { path: 'event-search', component: EventSearchComponent },
       { path: 'event-detail/:id', component: EventDetailComponent },
+      { path: 'event-add', component: EventAddComponent },
+      { path: 'country-add', component: CountryAddComponent },
+      { path: 'country-list', component: CountryListComponent }
     ])
   ],
   providers: [
     EventService,
+    CountriesService,
+    PerformerCategoriesService,
     windowProvider
   ],
   bootstrap: [AppComponent]

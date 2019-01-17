@@ -24,7 +24,7 @@ namespace ETicketAngular.Controllers
         [HttpGet]
         public IEnumerable<PerformerCategories> GetPerformerCategories()
         {
-            return _context.PerformerCategories;
+            return _context.PerformerCategories.Include(p => p.Performers).ThenInclude(t => t.Tours);
         }
 
         // GET: api/PerformerCategories/5

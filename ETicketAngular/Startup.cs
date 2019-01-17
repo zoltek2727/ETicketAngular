@@ -31,7 +31,9 @@ namespace ETicketAngular
                     .AllowCredentials());
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Sebastian\Documents\Visual Studio 2017\Projects\ETicketDB.mdf;Integrated Security=True;Connect Timeout=30";
             services.AddDbContext<ETicketDBContext>(options => options.UseSqlServer(connection));

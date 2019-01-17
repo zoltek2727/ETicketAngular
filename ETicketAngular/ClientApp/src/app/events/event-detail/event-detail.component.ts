@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 
 import { Event } from "src/app/models/event";
-import { EventService } from '../services/events.service';
+import { EventService } from 'src/app/services/events.service';
 import { windowProvider } from 'src/app/window';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class EventDetailComponent implements OnInit {
   public event: Event;
 
   constructor(private eventsService: EventService,
-    @Inject(windowProvider.provide) private window: Window, private router: Router, private activeRoute: ActivatedRoute) { }
+    private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getEventDetails()
@@ -26,7 +26,7 @@ export class EventDetailComponent implements OnInit {
     this.eventsService.getEvent(id)
       .subscribe(event => {
         this.event = event as Event;
-      }
+      })
   }
 
 }

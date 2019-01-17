@@ -26,7 +26,9 @@ namespace ETicketAngular.Controllers
         [HttpGet]
         public IEnumerable<Countries> GetCountries()
         {
-            return _context.Countries;
+            return _context.Countries
+                .Include(c => c.Cities)
+                    .ThenInclude(p => p.Places);
         }
 
         /*[HttpGet]

@@ -1,0 +1,5 @@
+<mat-form-field>
+  <input matInput placeholder="Country name" [(ngModel)]="model.CountryName">
+</mat-form-field>
+<br/>
+<button mat-button id="details" (click)="AddCountry(model); model=''">ADD</button>

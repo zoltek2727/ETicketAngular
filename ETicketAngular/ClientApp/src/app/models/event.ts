@@ -1,4 +1,4 @@
-export interface Event {
+export class Event {
   public EventId: number;
   public EventName: string;
   public EventDescription: string;
